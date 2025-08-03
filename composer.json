@@ -3,9 +3,11 @@
     "description": "Sakura Japanese School Website",
     "type": "project",
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
     },
-    "scripts": {
-        "start": "php -S 0.0.0.0:$PORT -t frontend/"
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
     }
 }

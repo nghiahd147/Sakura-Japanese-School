@@ -7,11 +7,20 @@ class Database {
     private $password;
 
     public function __construct() {
-        // Railway environment variables
-        $this->host = $_ENV['MYSQLHOST'] ?? 'localhost';
-        $this->db_name = $_ENV['MYSQLDATABASE'] ?? 'japanese_school';
-        $this->username = $_ENV['MYSQLUSER'] ?? 'root';
-        $this->password = $_ENV['MYSQLPASSWORD'] ?? '';
+        // Check for Heroku ClearDB URL first
+        if (isset($_ENV['CLEARDB_DATABASE_URL'])) {
+            $url = parse_url($_ENV['CLEARDB_DATABASE_URL']);
+            $this->host = $url['host'];
+            $this->db_name = substr($url['path'], 1);
+            $this->username = $url['user'];
+            $this->password = $url['pass'];
+        } else {
+            // Fallback to individual environment variables
+            $this->host = $_ENV['MYSQLHOST'] ?? 'localhost';
+            $this->db_name = $_ENV['MYSQLDATABASE'] ?? 'japanese_school';
+            $this->username = $_ENV['MYSQLUSER'] ?? 'root';
+            $this->password = $_ENV['MYSQLPASSWORD'] ?? '';
+        }
     }
     public $conn;
 
