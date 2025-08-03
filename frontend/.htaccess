@@ -1,22 +1,15 @@
 RewriteEngine On
 
-# Handle API requests
+# API routing
 RewriteRule ^api/(.*)$ ../backend/api/$1 [L]
 
-# Security headers
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
-</IfModule>
-
-# Disable directory browsing
+# Security
 Options -Indexes
-
-# Default document
 DirectoryIndex index.html
 
-# Gzip compression
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
+# CORS headers for API
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
 </IfModule>
