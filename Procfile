@@ -1,1 +1,1 @@
-web: php -S 0.0.0.0:$PORT -t frontend/
+web: PORT=${PORT:-8080} && php -S 0.0.0.0:$PORT -t frontend/
