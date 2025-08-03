@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ['php74', 'php74Packages.composer']
+
+[phases.build]
+cmds = ['echo "Build completed"']
+
+[phases.start]
+cmd = 'php -S 0.0.0.0:$PORT -t frontend/'
