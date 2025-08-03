@@ -1,0 +1,28 @@
+# Allow access to uploaded images
+<Files ~ "\.(jpg|jpeg|png|gif)$">
+    Allow from all
+</Files>
+
+# Prevent access to PHP files in upload directory
+<Files ~ "\.php$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set proper MIME types
+<IfModule mod_mime.c>
+    AddType image/jpeg .jpg .jpeg
+    AddType image/png .png
+    AddType image/gif .gif
+</IfModule>
+
+# Enable browser caching for images
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+</IfModule>

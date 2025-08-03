@@ -1,0 +1,36 @@
+# Git files
+.git
+.gitignore
+
+# Documentation
+README.md
+INSTALLATION_GUIDE.md
+MO_DAU_BAO_CAO.md
+*.md
+
+# Windows files
+setup.bat
+Thumbs.db
+
+# macOS files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Node modules (if any)
+node_modules/
+
+# Cache
+cache/

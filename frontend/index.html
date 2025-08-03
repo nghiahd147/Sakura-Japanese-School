@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京語文学院 - Học Viện Ngôn Ngữ Tokyo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen relative">
+    <!-- Seamless Background Gradient -->
+    <div class="fixed inset-0 bg-gradient-to-br from-pink-100 via-purple-50 via-white via-orange-50 via-cyan-50 to-blue-100 -z-10"></div>
+    
+    <!-- Theme Transition Overlay -->
+    <div id="theme-transition-overlay" class="theme-transition-overlay">
+        <div class="transition-circle"></div>
+        <div class="transition-rays">
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+        </div>
+        <div class="transition-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+        </div>
+    </div>
+    
+    <!-- Sakura Animation Container -->
+    <div id="sakura-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">東京語文学院</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Trang chủ</a>
+                    <a href="#about" class="nav-link">Giới thiệu</a>
+                    <a href="#courses" class="nav-link">Khóa học</a>
+                    <a href="#teachers" class="nav-link">Giảng viên</a>
+                    <a href="#contact" class="nav-link">Liên hệ</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Enhanced Theme Toggle Button -->
+                    <div class="theme-toggle-container">
+                        <button id="theme-toggle" class="enhanced-theme-toggle" title="Chuyển đổi giao diện">
+                            <div class="toggle-track">
+                                <div class="toggle-thumb">
+                                    <div class="toggle-icon sun-icon">
+                                        <i class="fas fa-sun"></i>
+                                    </div>
+                                    <div class="toggle-icon moon-icon">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                </div>
+                                <div class="toggle-bg"></div>
+                                <div class="toggle-glow"></div>
+                            </div>
+                            <div class="toggle-ripple"></div>
+                        </button>
+                        <span class="toggle-label">Dark Mode</span>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-gray-800">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-background">
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="animate-float">
+                <h1 class="text-6xl md:text-8xl font-bold text-gray-800 mb-6">
+                    <span class="bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent">
+                        東京語文学院
+                    </span>
+                </h1>
+                <p class="text-2xl md:text-3xl hero-subtitle mb-8 font-medium">
+                    Học Viện Ngôn Ngữ Tokyo - Nơi biến ước mơ thành hiện thực
+                </p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center">
+                    <button class="btn-primary-enhanced" onclick="window.location.href='auth.html'">
+                        <i class="fas fa-play mr-2"></i>
+                        Khám phá ngay
+                    </button>
+                    <button class="btn-secondary-enhanced" onclick="scrollToSection('about')">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Tìm hiểu thêm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Japanese School Style -->
+    <section id="about" class="py-20 bg-white/10 backdrop-blur-sm relative overflow-hidden">
+        <!-- School Notebook Paper Background -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="school-paper-bg"></div>
+        </div>
+        
+        <!-- Floating School Elements -->
+        <div class="floating-school-elements">
+            <div class="floating-pencil"></div>
+            <div class="floating-eraser"></div>
+            <div class="floating-ruler"></div>
+            <div class="floating-star-sticker"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- School Bulletin Board Header -->
+            <div class="school-bulletin-board mb-16">
+                <div class="bulletin-header">
+                    <div class="bulletin-pin top-left"></div>
+                    <div class="bulletin-pin top-right"></div>
+                    <div class="bulletin-pin bottom-left"></div>
+                    <div class="bulletin-pin bottom-right"></div>
+                    
+                    <div class="text-center p-8">
+                        <div class="school-chalkboard mb-6">
+                            <h2 class="chalkboard-text">
+                                🏫 Về trường học của chúng tôi 🏫
+                            </h2>
+                        </div>
+                        <div class="school-motto">
+                            <span class="motto-text">Nơi biến ước mơ thành hiện thực</span>
+                            <span class="motto-subtitle">~ Khởi đầu cho tương lai tươi sáng ~</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- School Report Cards -->
+            <div class="school-report-section">
+                <div class="report-cards-container">
+                    <!-- Student Report Card -->
+                    <div class="report-card student-report" data-aos="flip-left" data-aos-delay="200">
+                        <div class="report-header">
+                            <div class="report-stamp">Xuất sắc</div>
+                            <h3 class="report-title">Báo cáo học sinh</h3>
+                            <div class="report-grade">A+</div>
+                        </div>
+                        
+                        <div class="report-content">
+                            <div class="report-photo">
+                                <img src="img/東京語文学院イラスト2500.jpg" alt="School Illustration" class="school-image">
+                            </div>
+                            
+                            <div class="report-stats">
+                                <div class="stat-item-school">
+                                    <span class="stat-label">Số học sinh</span>
+                                    <span class="stat-number-school" data-count="5000">0</span>
+                                    <span class="stat-unit">người</span>
+                                </div>
+                                
+                                <div class="achievements-list">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-star achievement-star"></i>
+                                        <span>95% tỷ lệ đỗ</span>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <i class="fas fa-certificate achievement-star"></i>
+                                        <span>Trường được công nhận quốc tế</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="report-footer">
+                            <div class="teacher-comment">
+                                <span class="comment-label">Nhận xét của giáo viên:</span>
+                                <p>"Các em đã đạt được những thành tích tuyệt vời!"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- University Report Card -->
+                    <div class="report-card university-report" data-aos="flip-up" data-aos-delay="400">
+                        <div class="report-header">
+                            <div class="report-stamp">Tuyệt vời</div>
+                            <h3 class="report-title">Báo cáo tuyển sinh</h3>
+                            <div class="report-grade">S</div>
+                        </div>
+                        
+                        <div class="report-content">
+                            <div class="report-photo">
+                                <img src="img/東京語文学院選ばれる理由_JPG.jpg" alt="Why Choose Us" class="school-image">
+                            </div>
+                            
+                            <div class="report-stats">
+                                <div class="stat-item-school">
+                                    <span class="stat-label">Tỷ lệ tuyển sinh</span>
+                                    <span class="stat-number-school" data-count="98">0</span>
+                                    <span class="stat-unit">%</span>
+                                </div>
+                                
+                                <div class="achievements-list">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-graduation-cap achievement-star"></i>
+                                        <span>Đỗ ĐH Tokyo & Waseda</span>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <i class="fas fa-trophy achievement-star"></i>
+                                        <span>Nhận học bổng</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="report-footer">
+                            <div class="teacher-comment">
+                                <span class="comment-label">Nhận xét của hiệu trưởng:</span>
+                                <p>"Đây là những nhân tài sẽ gánh vác tương lai Nhật Bản"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Teacher Report Card -->
+                    <div class="report-card teacher-report" data-aos="flip-right" data-aos-delay="600">
+                        <div class="report-header">
+                            <div class="report-stamp">Hoàn hảo</div>
+                            <h3 class="report-title">Báo cáo giáo viên</h3>
+                            <div class="report-grade">A++</div>
+                        </div>
+                        
+                        <div class="report-content">
+                            <div class="report-photo">
+                                <img src="img/スクリーンショット 2022-08-17 0_45_30.jpg" alt="School Screenshot" class="school-image">
+                            </div>
+                            
+                            <div class="report-stats">
+                                <div class="stat-item-school">
+                                    <span class="stat-label">Số giáo viên</span>
+                                    <span class="stat-number-school" data-count="40">0</span>
+                                    <span class="stat-unit">người</span>
+                                </div>
+                                
+                                <div class="achievements-list">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-heart achievement-star"></i>
+                                        <span>Giảng dạy đầy yêu thương</span>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <i class="fas fa-globe achievement-star"></i>
+                                        <span>Đội ngũ đa quốc gia</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="report-footer">
+                            <div class="teacher-comment">
+                                <span class="comment-label">Nhận xét của học sinh:</span>
+                                <p>"Đây là những giáo viên tuyệt vời nhất! Cảm ơn thầy cô!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- School Timeline Manga Style -->
+            <div class="school-timeline-manga mt-20">
+                <div class="manga-timeline-header">
+                    <h3 class="manga-title">🎌 Câu chuyện lịch sử trường học 📚</h3>
+                </div>
+                
+                <div class="manga-panels">
+                    <div class="manga-panel panel-1983" data-aos="zoom-in" data-aos-delay="800">
+                        <div class="manga-frame">
+                            <div class="manga-year">1983</div>
+                            <div class="manga-content">
+                                <div class="manga-character">👨‍🏫</div>
+                                <div class="speech-bubble">
+                                    <span class="bubble-text">Hãy bắt đầu ngôi trường!</span>
+                                    <span class="bubble-translation">Khởi đầu của một ước mơ</span>
+                                </div>
+                            </div>
+                            <div class="manga-action-lines"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="manga-panel panel-2000" data-aos="zoom-in" data-aos-delay="1000">
+                        <div class="manga-frame">
+                            <div class="manga-year">2000</div>
+                            <div class="manga-content">
+                                <div class="manga-character">🌍</div>
+                                <div class="speech-bubble">
+                                    <span class="bubble-text">Tiến ra thế giới!</span>
+                                    <span class="bubble-translation">Mở rộng tầm nhìn quốc tế</span>
+                                </div>
+                            </div>
+                            <div class="manga-effect-sparkles"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="manga-panel panel-2023" data-aos="zoom-in" data-aos-delay="1200">
+                        <div class="manga-frame">
+                            <div class="manga-year">2023</div>
+                            <div class="manga-content">
+                                <div class="manga-character">🎉</div>
+                                <div class="speech-bubble">
+                                    <span class="bubble-text">Đạt 5000 học viên!</span>
+                                    <span class="bubble-translation">Thành tựu vượt kỳ vọng</span>
+                                </div>
+                            </div>
+                            <div class="manga-celebration-effects"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sticky Notes Section -->
+            <div class="sticky-notes-section mt-16">
+                <div class="sticky-note yellow-note" data-aos="rotate-in" data-aos-delay="1400">
+                    <div class="note-content">
+                        <h4>💫 Mơ ước</h4>
+                        <p>Học tiếng Nhật<br>Du học Nhật Bản</p>
+                    </div>
+                </div>
+                
+                <div class="sticky-note pink-note" data-aos="rotate-in" data-aos-delay="1600">
+                    <div class="note-content">
+                        <h4>📚 Học tập</h4>
+                        <p>Phương pháp hiện đại<br>Giáo viên tận tâm</p>
+                    </div>
+                </div>
+                
+                <div class="sticky-note green-note" data-aos="rotate-in" data-aos-delay="1800">
+                    <div class="note-content">
+                        <h4>🎯 Thành công</h4>
+                        <p>Visa du học<br>Đại học danh tiếng</p>
+                    </div>
+                </div>
+                
+                <div class="sticky-note blue-note" data-aos="rotate-in" data-aos-delay="2000">
+                    <div class="note-content">
+                        <h4>🌟 Tương lai</h4>
+                        <p>Sự nghiệp thành công<br>Tại Nhật Bản</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section - Tokyo Style -->
+    <section id="courses" class="py-20 bg-white/15 backdrop-blur-sm relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="tokyo-pattern"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Header với hiệu ứng typing -->
+            <div class="text-center mb-20">
+                <div class="inline-block">
+                    <!-- Test version without gradient first -->
+                    <h2 class="text-5xl font-bold mb-4 typing-effect" style="font-family: 'Noto Sans JP', sans-serif; color: #8b5cf6; line-height: 1.3; letter-spacing: 0.02em;">
+                        Giới Thiệu Khóa Học
+                    </h2>
+                    <!-- Gradient version as backup
+                    <h2 class="text-5xl font-bold mb-4 typing-effect text-gray-800" style="font-family: 'Noto Sans JP', sans-serif; line-height: 1.2;">
+                        <span style="background: linear-gradient(to right, #ec4899, #8b5cf6, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">Giới Thiệu Khóa Học</span>
+                    </h2>
+                    -->
+                    <div class="h-1 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full transform scale-x-0 animate-expand"></div>
+                </div>
+                <p class="text-xl text-gray-600 mt-6 fade-in-up">Chương trình đào tạo toàn diện phù hợp với mọi trình độ</p>
+                <p class="text-lg text-gray-500 mt-2 fade-in-up delay-200">Từ cơ bản đến nâng cao, đồng hành cùng ước mơ của bạn</p>
+            </div>
+            
+            <!-- Course Cards với Tokyo Style -->
+            <div class="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto" id="courses-container">
+                <!-- Loading state -->
+                <div class="col-span-3 text-center py-12">
+                    <div class="inline-block">
+                        <i class="fas fa-spinner fa-spin text-4xl text-blue-500 mb-4"></i>
+                        <p class="text-lg text-gray-600">Đang tải thông tin khóa học...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-elements">
+                <div class="floating-cherry"></div>
+                <div class="floating-origami"></div>
+                <div class="floating-star"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section - Detailed Japanese Academic Style -->
+    <section id="teachers" class="py-20 bg-white/10 backdrop-blur-sm relative overflow-hidden">
+        <!-- Academic Background Pattern -->
+        <div class="absolute inset-0 pointer-events-none opacity-5">
+            <div class="academic-pattern"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Academic Header -->
+            <div class="text-center mb-16">
+                <div class="relative inline-block bg-white px-12 py-6 rounded-lg shadow-2xl border-l-8 border-blue-600">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-2">
+                        <span class="text-blue-600">Giới thiệu cán bộ trường</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-3"></div>
+                    <p class="text-xl text-gray-700 font-medium">Giới thiệu đội ngũ giảng viên</p>
+                    <div class="absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold transform rotate-12">
+                        NEW!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Leadership Section -->
+            <div class="max-w-7xl mx-auto space-y-16">
+                <!-- Teacher 1 - Principal (林 銀) -->
+                <div class="academic-profile-card">
+                    <div class="profile-header">
+                        <div class="profile-badge principal-badge">
+                            <span class="badge-text">Chủ tịch</span>
+                            <span class="badge-icon">👑</span>
+                        </div>
+                        <h3 class="profile-title">Chủ tịch Lâm Ngân</h3>
+                        <div class="profile-credentials">
+                            <span class="credential">Xuất thân: Đài Loan</span>
+                            <span class="credential">Học vấn: Thạc sĩ Đại học Sư phạm Quốc gia Đài Loan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <div class="profile-image-section">
+                            <div class="image-frame principal-frame">
+                                <img src="img/08896f_6d4a062a2d9a4da980e94e11e556f453~mv2 (1).png" alt="会長 林 銀" class="profile-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">Principal</div>
+                                </div>
+                            </div>
+                            <div class="image-decorations">
+                                <div class="deco-element deco-1">🌸</div>
+                                <div class="deco-element deco-2">📚</div>
+                                <div class="deco-element deco-3">🎓</div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-description">
+                            <div class="description-content">
+                                <p class="main-text">
+                                    Nhật Bản từ lâu đã phát triển về khoa học công nghệ, tài chính và y tế với những công nghệ tiên tiến. Việc học hỏi nền văn hóa này và đóng góp cho xã hội sẽ mang lại sự tôn trọng cao cả. Để du học thành công, việc thành thạo tiếng Nhật là bước đầu tiên quan trọng nhất.
+                                </p>
+                                <p class="sub-text">
+                                    Tôi từng có trải nghiệm du học tại Nhật Bản nhưng gặp khó khăn về ngôn ngữ. Từ những trải nghiệm đó, tôi quyết tâm thành lập ngôi trường này để giúp đỡ các học sinh có những cơ hội tốt hơn. Tôi rất mong được gặp và hỗ trợ tất cả các bạn.
+                                </p>
+                                <div class="highlight-quote">
+                                    <span class="quote-mark">"</span>
+                                    <span class="quote-text">Ngày mai</span>
+                                    <span class="quote-mark">"</span>
+                                    <span class="quote-desc">Hãy tiếp tục cố gắng, tôi hy vọng các bạn sẽ có những trải nghiệm vui vẻ ngày hôm nay và thành công trong việc du học Nhật Bản. Rất hạnh phúc được đồng hành cùng các bạn.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher 2 - Vice Principal (洪 筆洋) -->
+                <div class="academic-profile-card vice-principal">
+                    <div class="profile-header">
+                        <div class="profile-badge vice-badge">
+                            <span class="badge-text">Hiệu trưởng</span>
+                            <span class="badge-icon">🎓</span>
+                        </div>
+                        <h3 class="profile-title">Hiệu trưởng Hồng Bút Dương</h3>
+                        <div class="profile-credentials">
+                            <span class="credential">Xuất thân: Nhật Bản</span>
+                            <span class="credential">Học vấn: Thạc sĩ Nghiên cứu Nhật Bản quốc tế - Đại học Meiji</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-content reverse">
+                        <div class="profile-description">
+                            <div class="description-content">
+                                <p class="main-text">
+                                    Các bạn trong quá trình học tiếng Nhật sẽ đối mặt với nhiều thách thức và yêu cầu khác nhau trong tương lai. Tuy nhiên, việc học tiếng Nhật không chỉ đơn giản là học ngôn ngữ mà còn là cả một hành trình khám phá văn hóa và tư duy.
+                                </p>
+                                <p class="sub-text">
+                                    Trong giảng dạy tiếng Nhật, chúng tôi không chỉ tập trung vào các bài tập ngữ pháp mà còn chú trọng đến việc phát triển tư duy đa chiều và khả năng vận dụng thực tế. Tôi tin rằng với phương pháp này, các bạn có thể giải quyết mọi vấn đề trong quá trình học tập.
+                                </p>
+                                <div class="highlight-quote reverse-quote">
+                                    <span class="quote-mark">"</span>
+                                    <span class="quote-text">Chân thành</span>
+                                    <span class="quote-mark">"</span>
+                                    <span class="quote-desc">Trong việc học tập, điều quan trọng là có thể suy nghĩ và học hỏi một cách linh hoạt. Trước hết, hãy đến trao đổi với chúng tôi về những khó khăn trong học tập của các bạn.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-image-section">
+                            <div class="image-frame vice-frame">
+                                <img src="img/08896f_6d4a062a2d9a4da980e94e11e556f453~mv2 (2).png" alt="校長 洪 筆洋" class="profile-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">Vice Principal</div>
+                                </div>
+                            </div>
+                            <div class="image-decorations reverse-deco">
+                                <div class="deco-element deco-4">🌟</div>
+                                <div class="deco-element deco-5">📖</div>
+                                <div class="deco-element deco-6">🎌</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Teachers Section from Database -->
+            <div class="mt-20">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                        <span class="text-purple-600">Đội Ngũ Giảng Viên</span>
+                    </h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mb-3"></div>
+                    <p class="text-lg text-gray-700">Giảng viên giàu kinh nghiệm và tận tâm</p>
+                </div>
+                
+                <div id="teachers-grid" class="max-w-7xl mx-auto">
+                    <!-- Teachers will be dynamically loaded here -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="teachers-container">
+                                            <!-- Loading state -->
+                    <div class="col-span-full text-center py-12">
+                        <div class="inline-flex items-center space-x-2 text-gray-500">
+                            <i class="fas fa-spinner fa-spin text-2xl"></i>
+                            <span class="text-lg">Đang tải thông tin giảng viên...</span>
+                        </div>
+                        <div class="mt-4">
+                            <button onclick="loadTeachersForHomepage()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+                                <i class="fas fa-redo mr-2"></i>Tải lại
+                            </button>
+                            <button onclick="window.open('./frontend/test-teachers.html', '_blank')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm ml-2">
+                                <i class="fas fa-bug mr-2"></i>Debug
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Footer -->
+            <div class="text-center mt-16">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 inline-block">
+                    <p class="text-lg font-bold">Quý khách muốn biết thêm thông tin chi tiết</p>
+                    <p class="text-sm mt-1 opacity-90">Vui lòng liên hệ với chúng tôi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white/20 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <!-- Contact Form - Japanese Style -->
+            <div class="max-w-2xl mx-auto">
+                <div class="japanese-contact-form">
+                    <!-- Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-700 mb-4">Liên hệ với chúng tôi</h2>
+                        <p class="text-gray-600">Vui lòng điền thông tin vào form bên dưới.</p>
+            </div>
+            
+                    <form id="contact-form" class="space-y-6">
+                        <!-- Name Fields -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="form-field">
+                                <label class="japanese-label">Họ</label>
+                                <input type="text" name="first_name" placeholder="Nhập họ" class="japanese-input" required>
+                            </div>
+                            <div class="form-field">
+                                <label class="japanese-label">Tên</label>
+                                <input type="text" name="last_name" placeholder="Nhập tên" class="japanese-input" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone and Email -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="form-field">
+                                <label class="japanese-label">
+                                    Mã vùng <span class="required-star">*</span>
+                                </label>
+                                <select name="country_code" class="japanese-select">
+                                    <option value="+84">VN +84</option>
+                                    <option value="+81">JP +81</option>
+                                    <option value="+1">US +1</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label class="japanese-label">
+                                    Số điện thoại <span class="required-star">*</span>
+                                </label>
+                                <input type="tel" name="phone" placeholder="Nhập số điện thoại" class="japanese-input" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="form-field">
+                            <label class="japanese-label">
+                                Email <span class="required-star">*</span>
+                            </label>
+                            <input type="email" name="email" placeholder="Nhập địa chỉ email" class="japanese-input" required>
+                    </div>
+                    
+                        <!-- Subject -->
+                        <div class="form-field">
+                            <label class="japanese-label">
+                                Khóa học quan tâm <span class="required-star">*</span>
+                            </label>
+                            <select name="course_id" class="japanese-select" required>
+                                <option value="">Chọn khóa học</option>
+                                <!-- Options will be loaded dynamically from backend -->
+                            </select>
+                        </div>
+                        
+                        <!-- Message -->
+                        <div class="form-field">
+                            <label class="japanese-label">Để lại lời nhắn cho chúng tôi...</label>
+                            <textarea name="message" rows="6" placeholder="Nhập nội dung tin nhắn, câu hỏi hoặc yêu cầu tư vấn..." class="japanese-textarea" required></textarea>
+                        </div>
+                        
+                        <!-- reCAPTCHA placeholder -->
+                        <div class="recaptcha-placeholder">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="recaptcha" class="w-4 h-4">
+                                <label for="recaptcha" class="text-sm text-gray-600">Tôi không phải là robot</label>
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjNDA0MDQwIi8+Cjwvc3ZnPgo=" alt="reCAPTCHA" class="w-6 h-6">
+                            </div>
+                        </div>
+                        
+                        <!-- Nationality -->
+                        <div class="form-field">
+                            <label class="japanese-label">
+                                <span class="flag-icon">🇻🇳</span> Quốc tịch <span class="required-star">*</span>
+                            </label>
+                            <input type="text" name="nationality" placeholder="Nhập quốc tịch của bạn" class="japanese-input" required>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="japanese-submit-btn">
+                                Gửi tin nhắn
+                            </button>
+                        </form>
+                </div>
+                
+                <!-- Contact Info Section -->
+                <div class="mt-16 grid md:grid-cols-3 gap-8 text-center">
+                    <div class="contact-info-card">
+                        <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Địa chỉ</h4>
+                        <p class="text-gray-600 text-sm">〒171-0014 東京都豊島区池袋3丁目26-16</p>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-white"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Điện thoại</h4>
+                        <p class="text-gray-600 text-sm">03-3986-4447</p>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-white"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Email</h4>
+                        <p class="text-gray-600 text-sm">info@j-study.net</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/90 backdrop-blur-sm text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">東京語文学院</h3>
+                    <p class="text-gray-300">Học Viện Ngôn Ngữ Tokyo - Nơi biến ước mơ thành hiện thực</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Khóa học</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-pink-400">Khóa học cơ bản</a></li>
+                        <li><a href="#" class="hover:text-pink-400">Khóa học trung cấp</a></li>
+                        <li><a href="#" class="hover:text-pink-400">Khóa học cao cấp</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Hỗ trợ</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-pink-400">Tư vấn du học</a></li>
+                        <li><a href="#" class="hover:text-pink-400">Thủ tục visa</a></li>
+                        <li><a href="#" class="hover:text-pink-400">Ký túc xá</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Theo dõi</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-pink-400"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-pink-400"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 Triệu Tuấn Anh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 

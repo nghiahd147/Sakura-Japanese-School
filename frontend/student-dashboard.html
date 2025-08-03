@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học viên - 東京語文学院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-800">Trang học viên</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Xin chào, <span id="student-name" class="font-medium"></span></span>
+                    <button id="logout-btn" class="text-red-500 hover:text-red-600">
+                        <i class="fas fa-sign-out-alt mr-1"></i>
+                        Đăng xuất
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg p-8 mb-8">
+            <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user-graduate text-3xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold">Chào mừng trở lại!</h2>
+                    <p class="text-lg opacity-90">Hãy tiếp tục hành trình học tập của bạn</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-book text-blue-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-800" id="enrolled-courses">0</div>
+                        <div class="text-gray-600">Khóa học đã đăng ký</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-green-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-800" id="avg-progress">0%</div>
+                        <div class="text-gray-600">Tiến độ trung bình</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-calendar text-purple-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-800" id="days-learning">0</div>
+                        <div class="text-gray-600">Ngày học tập</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- My Courses -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800">Khóa học của tôi</h3>
+                        <button id="browse-courses-btn" class="btn-secondary">
+                            <i class="fas fa-search mr-2"></i>
+                            Xem thêm khóa học
+                        </button>
+                    </div>
+                    
+                    <div id="my-courses" class="space-y-4">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Available Courses -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Khóa học có sẵn</h3>
+                    
+                    <div id="available-courses" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Profile Card -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Thông tin cá nhân</h4>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Họ tên</label>
+                            <div class="text-gray-800" id="profile-fullname">-</div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Email</label>
+                            <div class="text-gray-800" id="profile-email">-</div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Số điện thoại</label>
+                            <div class="text-gray-800" id="profile-phone">-</div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Ngày đăng ký</label>
+                            <div class="text-gray-800" id="profile-enrollment">-</div>
+                        </div>
+                    </div>
+                    
+                    <button id="edit-profile-btn" class="btn-primary w-full mt-4">
+                        <i class="fas fa-edit mr-2"></i>
+                        Chỉnh sửa thông tin
+                    </button>
+                </div>
+
+                <!-- Study Tips -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Mẹo học tập</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-lightbulb text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-gray-800">Luyện tập hàng ngày</h5>
+                                <p class="text-sm text-gray-600">Dành ít nhất 30 phút mỗi ngày để ôn tập từ vựng và ngữ pháp</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-comments text-green-500"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-gray-800">Giao tiếp thực tế</h5>
+                                <p class="text-sm text-gray-600">Tìm cơ hội thực hành với người Nhật hoặc bạn học</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-headphones text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-gray-800">Nghe nhiều</h5>
+                                <p class="text-sm text-gray-600">Xem anime, J-drama để làm quen với ngôn ngữ tự nhiên</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Liên kết hữu ích</h4>
+                    
+                    <div class="space-y-2">
+                        <a href="#" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg">
+                            <i class="fas fa-external-link-alt text-blue-500"></i>
+                            <span class="text-gray-700">JLPT Test Online</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg">
+                            <i class="fas fa-book-open text-green-500"></i>
+                            <span class="text-gray-700">Từ điển Nhật-Việt</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg">
+                            <i class="fas fa-video text-purple-500"></i>
+                            <span class="text-gray-700">Video bài giảng</span>
+                        </a>
+                        <!-- <a href="index.html" class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg">
+                            <i class="fas fa-home text-pink-500"></i>
+                            <span class="text-gray-700">Trang chủ</span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enroll Course Modal -->
+    <div id="enroll-modal" class="modal hidden">
+        <div class="modal-content max-w-md">
+            <div class="modal-header">
+                <h3 id="enroll-modal-title">Đăng ký khóa học</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="course-details" class="mb-6">
+                    <!-- Course details will be populated here -->
+                </div>
+                <p class="text-gray-600 mb-4">Bạn có muốn đăng ký khóa học này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('enroll-modal')">Hủy</button>
+                <button type="button" id="confirm-enroll-btn" class="btn-primary">Đăng ký</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="profile-modal" class="modal hidden">
+        <div class="modal-content max-w-md">
+            <div class="modal-header">
+                <h3>Chỉnh sửa thông tin</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="profile-form" class="modal-body space-y-4">
+                <div>
+                    <label class="form-label">Họ tên *</label>
+                    <input type="text" id="edit-fullname" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="tel" id="edit-phone" class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Mật khẩu mới</label>
+                    <input type="password" id="edit-password" class="form-input" placeholder="Để trống nếu không muốn đổi">
+                </div>
+                <div>
+                    <label class="form-label">Xác nhận mật khẩu</label>
+                    <input type="password" id="edit-confirm-password" class="form-input" placeholder="Xác nhận mật khẩu mới">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close">Hủy</button>
+                    <button type="submit" class="btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 flex items-center space-x-4">
+            <div class="loading-spinner"></div>
+            <span class="text-gray-700">Đang xử lý...</span>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/student-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị hệ thống - 東京語文学院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 shadow-sm transition-all duration-300 ease-in-out z-40">
+        <!-- Logo -->
+        <div class="h-16 flex items-center px-6 border-b border-gray-200">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-graduation-cap text-white text-sm"></i>
+                </div>
+                <div class="sidebar-text">
+                    <h1 class="text-lg font-semibold text-gray-900">東京語文学院</h1>
+                    <p class="text-xs text-gray-500">Admin Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="mt-6 px-3">
+            <div class="space-y-1">
+                <button class="nav-item active group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg w-full text-left transition-colors duration-200" data-tab="dashboard">
+                    <i class="fas fa-chart-line text-base mr-3 flex-shrink-0"></i>
+                    <span class="sidebar-text">Tổng quan</span>
+                </button>
+                
+                <button class="nav-item group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg w-full text-left transition-colors duration-200" data-tab="users">
+                    <i class="fas fa-users text-base mr-3 flex-shrink-0"></i>
+                    <span class="sidebar-text">Quản lý người dùng</span>
+                </button>
+                
+                <button class="nav-item group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg w-full text-left transition-colors duration-200" data-tab="courses">
+                    <i class="fas fa-book text-base mr-3 flex-shrink-0"></i>
+                    <span class="sidebar-text">Quản lý khóa học</span>
+                </button>
+                
+                <button class="nav-item group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg w-full text-left transition-colors duration-200" data-tab="teachers">
+                    <i class="fas fa-chalkboard-teacher text-base mr-3 flex-shrink-0"></i>
+                    <span class="sidebar-text">Quản lý giảng viên</span>
+                </button>
+                
+                <button class="nav-item group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg w-full text-left transition-colors duration-200" data-tab="contact">
+                    <i class="fas fa-envelope text-base mr-3 flex-shrink-0"></i>
+                    <span class="sidebar-text">Liên hệ</span>
+                </button>
+                
+            </div>
+        </nav>
+
+        <!-- Sidebar Toggle -->
+        <div class="absolute bottom-4 left-3 right-3">
+            <button id="sidebar-toggle" class="flex items-center justify-center w-full px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200">
+                <i class="fas fa-chevron-left sidebar-toggle-icon"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div id="main-content" class="ml-64 transition-all duration-300 ease-in-out">
+        <!-- Top Bar -->
+        <header class="h-16 bg-white border-b border-gray-200 shadow-sm">
+            <div class="h-full px-6 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 id="page-title" class="text-xl font-semibold text-gray-900">Tổng quan hệ thống</h1>
+                    <span class="text-sm text-gray-500">
+                        Cập nhật: <span id="last-updated-time">--</span>
+                    </span>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-gray-600 text-sm"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">
+                            Xin chào, <span id="admin-name" class="font-medium text-gray-900">admin</span>
+                        </span>
+                    </div>
+                    <button id="logout-btn" class="flex items-center space-x-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-sign-out-alt text-sm"></i>
+                        <span class="text-sm font-medium">Đăng xuất</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="p-6">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Tổng quan hệ thống</h2>
+                    <p class="text-gray-600">Theo dõi hoạt động và thống kê tổng quan của hệ thống</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Total Users -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Tổng người dùng</p>
+                                <p class="text-2xl font-bold text-gray-900" id="total-users">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Courses -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-book text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Tổng khóa học</p>
+                                <p class="text-2xl font-bold text-gray-900" id="total-courses">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Teachers -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chalkboard-teacher text-purple-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Tổng giảng viên</p>
+                                <p class="text-2xl font-bold text-gray-900" id="total-teachers">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Students -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-user-graduate text-orange-600 text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Học viên đang học</p>
+                                <p class="text-2xl font-bold text-gray-900" id="active-students">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Hoạt động gần đây</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4" id="recent-activities">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm text-gray-900">Người dùng mới đăng ký</p>
+                                        <p class="text-xs text-gray-500">2 phút trước</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm text-gray-900">Khóa học mới được tạo</p>
+                                        <p class="text-xs text-gray-500">15 phút trước</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm text-gray-900">Cập nhật thông tin giảng viên</p>
+                                        <p class="text-xs text-gray-500">30 phút trước</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Thống kê tuần này</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Đăng ký mới</span>
+                                    <span class="text-sm font-medium text-gray-900">+12</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Khóa học hoàn thành</span>
+                                    <span class="text-sm font-medium text-gray-900">8</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Đánh giá mới</span>
+                                    <span class="text-sm font-medium text-gray-900">25</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Tỷ lệ hoàn thành</span>
+                                    <span class="text-sm font-medium text-green-600">89%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users-tab" class="tab-content hidden">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Quản lý người dùng</h2>
+                        <p class="text-gray-600">Quản lý tài khoản và phân quyền hệ thống</p>
+                    </div>
+                    <button class="admin-btn-primary" onclick="adminDashboard.openUserModal()">
+                        <i class="fas fa-plus mr-2"></i>
+                        Thêm người dùng mới
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tìm kiếm</label>
+                            <input type="text" id="user-search" class="admin-input" placeholder="Nhập tên, email hoặc username...">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Vai trò</label>
+                            <select id="user-role-filter" class="admin-input">
+                                <option value="">Tất cả vai trò</option>
+                                <option value="admin">Quản trị viên</option>
+                                <option value="teacher">Giảng viên</option>
+                                <option value="student">Học viên</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Trạng thái</label>
+                            <select id="user-status-filter" class="admin-input">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Tạm ngưng</option>
+                                <option value="pending">Chờ duyệt</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Người dùng</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thông tin liên hệ</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vai trò</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trạng thái</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ngày tham gia</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Tab -->
+            <div id="courses-tab" class="tab-content hidden">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Quản lý khóa học</h2>
+                        <p class="text-gray-600">Quản lý chương trình đào tạo và nội dung học tập</p>
+                    </div>
+                    <button class="admin-btn-primary" onclick="adminDashboard.openCourseModal()">
+                        <i class="fas fa-plus mr-2"></i>
+                        Tạo khóa học mới
+                    </button>
+                </div>
+
+                <!-- Course Cards Grid -->
+                <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Teachers Tab -->
+            <div id="teachers-tab" class="tab-content hidden">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Quản lý giảng viên</h2>
+                        <p class="text-gray-600">Quản lý đội ngũ giảng dạy và chuyên gia</p>
+                    </div>
+                    <button class="admin-btn-primary" onclick="adminDashboard.openTeacherModal()">
+                        <i class="fas fa-plus mr-2"></i>
+                        Thêm giảng viên
+                    </button>
+                </div>
+
+                <!-- Teachers Grid -->
+                <div id="teachers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Teachers will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Contact Tab -->
+            <div id="contact-tab" class="tab-content hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Quản lý liên hệ</h2>
+                    <p class="text-gray-600">Quản lý tin nhắn và yêu cầu hỗ trợ từ người dùng</p>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold mb-2" id="total-contacts">-</div>
+                        <div class="text-sm opacity-90">Tổng liên hệ</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-500 to-blue-500 text-white p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold mb-2" id="new-contacts">-</div>
+                        <div class="text-sm opacity-90">Liên hệ mới</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold mb-2" id="processed-contacts">-</div>
+                        <div class="text-sm opacity-90">Đang xử lý</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold mb-2" id="completed-contacts">-</div>
+                        <div class="text-sm opacity-90">Hoàn thành</div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+                    <h3 class="text-xl font-semibold text-gray-800">Danh sách liên hệ</h3>
+                    <div class="flex space-x-4">
+                        <select id="status-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="new">Mới</option>
+                            <option value="processed">Đang xử lý</option>
+                            <option value="completed">Hoàn thành</option>
+                        </select>
+                        <button onclick="loadContacts()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-refresh mr-2"></i>Tải lại
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contacts Table -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Họ tên</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Số điện thoại</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Khóa học</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Trạng thái</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Ngày tạo</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contacts-table-body" class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td colspan="8" class="px-6 py-4 text-center text-gray-500">
+                                        <i class="fas fa-spinner fa-spin text-2xl mb-4"></i>
+                                        <p>Đang tải dữ liệu...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals (keep existing modal HTML) -->
+    
+    <!-- Modal for Add/Edit User -->
+    <div id="user-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title">Thêm người dùng</h3>
+                <button class="modal-close" data-modal="user-modal">&times;</button>
+            </div>
+            <form id="user-form" class="modal-body space-y-4">
+                <input type="hidden" id="user-id">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label required">Tên đăng nhập</label>
+                        <input type="text" id="user-username" class="form-input" placeholder="Nhập tên đăng nhập" required>
+                    </div>
+                    <div>
+                        <label class="form-label required">Email</label>
+                        <input type="email" id="user-email" class="form-input" placeholder="Nhập địa chỉ email" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label required">Họ và tên</label>
+                    <input type="text" id="user-fullname" class="form-input" placeholder="Nhập họ và tên đầy đủ" required>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" id="user-phone" class="form-input" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div>
+                        <label class="form-label required">Vai trò</label>
+                        <select id="user-role" class="form-input" required>
+                            <option value="">Chọn vai trò</option>
+                            <option value="admin">Quản trị viên</option>
+                            <option value="teacher">Giảng viên</option>
+                            <option value="student">Học viên</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Trạng thái</label>
+                    <select id="user-status" class="form-input">
+                        <option value="active">Đang hoạt động</option>
+                        <option value="inactive">Tạm ngưng</option>
+                        <option value="pending">Chờ duyệt</option>
+                    </select>
+                </div>
+                <div id="password-fields">
+                    <label class="form-label required">Mật khẩu</label>
+                    <input type="password" id="user-password" class="form-input" placeholder="Nhập mật khẩu">
+                    <div class="mt-2">
+                        <small style="color: rgba(0, 0, 0, 0.45); font-size: 12px;">Để trống nếu không muốn thay đổi mật khẩu khi chỉnh sửa</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close" data-modal="user-modal">Hủy</button>
+                    <button type="submit" class="btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Course -->
+    <div id="course-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="course-modal-title">Thêm khóa học</h3>
+                <button class="modal-close" data-modal="course-modal">&times;</button>
+            </div>
+            <form id="course-form" class="modal-body space-y-4">
+                <input type="hidden" id="course-id">
+                <div>
+                    <label class="form-label required">Tên khóa học</label>
+                    <input type="text" id="course-name" class="form-input" placeholder="Nhập tên khóa học" required>
+                </div>
+                <div>
+                    <label class="form-label required">Mô tả khóa học</label>
+                    <textarea id="course-description" class="form-input" placeholder="Nhập mô tả chi tiết về khóa học..." required></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label required">Thời lượng</label>
+                        <input type="text" id="course-duration" class="form-input" placeholder="VD: 3 tháng, 40 giờ" required>
+                    </div>
+                    <div>
+                        <label class="form-label required">Trình độ</label>
+                        <select id="course-level" class="form-input" required>
+                            <option value="">Chọn trình độ</option>
+                            <option value="Cơ bản">Cơ bản</option>
+                            <option value="Trung cấp">Trung cấp</option>
+                            <option value="Nâng cao">Nâng cao</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label required">Học phí (VNĐ)</label>
+                    <input type="number" id="course-price" class="form-input" placeholder="Nhập học phí" min="0" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close" data-modal="course-modal">Hủy</button>
+                    <button type="submit" class="btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Teacher -->
+    <div id="teacher-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="teacher-modal-title">Thêm giảng viên</h3>
+                <button class="modal-close" data-modal="teacher-modal">&times;</button>
+            </div>
+            <form id="teacher-form" class="modal-body space-y-4">
+                <input type="hidden" id="teacher-id">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="form-label required">Tên giảng viên</label>
+                        <input type="text" id="teacher-name" class="form-input" placeholder="Nhập họ tên giảng viên" required>
+                    </div>
+                    <div>
+                        <label class="form-label required">Chức vụ</label>
+                        <input type="text" id="teacher-position" class="form-input" placeholder="VD: Giảng viên chính, Trưởng bộ môn" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Giới thiệu</label>
+                    <textarea id="teacher-description" class="form-input" placeholder="Nhập thông tin giới thiệu về giảng viên..."></textarea>
+                </div>
+                <div>
+                    <label class="form-label">Ảnh đại diện</label>
+                    <div class="space-y-3">
+                        <!-- File input -->
+                        <input type="file" id="teacher-image-file" class="form-input" accept="image/*" onchange="previewTeacherImage(this)">
+                        <small class="text-gray-500">Chấp nhận: JPG, PNG, GIF. Kích thước tối đa: 5MB</small>
+                        
+                        <!-- Image preview -->
+                        <div id="teacher-image-preview" class="hidden">
+                            <img id="teacher-preview-img" src="" alt="Preview" class="w-32 h-32 object-cover rounded-lg border">
+                            <button type="button" onclick="removeTeacherImage()" class="mt-2 text-red-600 text-sm hover:text-red-800">
+                                <i class="fas fa-trash mr-1"></i>Xóa ảnh
+                            </button>
+                        </div>
+                        
+                        <!-- Hidden field to store image URL after upload -->
+                        <input type="hidden" id="teacher-image-url" name="image_url">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close" data-modal="teacher-modal">Hủy</button>
+                    <button type="submit" class="btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Detail Modal -->
+    <div id="contact-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold text-gray-900">Chi tiết liên hệ</h3>
+                <button class="modal-close" data-modal="contact-modal">&times;</button>
+            </div>
+            <div id="contact-details" class="modal-body space-y-4">
+                <!-- Contact details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button onclick="processContact()" class="btn-secondary">
+                    <i class="fas fa-check mr-2"></i>Xử lý
+                </button>
+                <button onclick="completeContact()" class="btn-secondary">
+                    <i class="fas fa-check-double mr-2"></i>Hoàn thành
+                </button>
+                <button onclick="deleteContact()" class="btn-danger">
+                    <i class="fas fa-trash mr-2"></i>Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 flex items-center space-x-4">
+            <div class="loading-spinner"></div>
+            <span class="text-gray-700">Đang xử lý...</span>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

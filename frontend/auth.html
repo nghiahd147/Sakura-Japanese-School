@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - 東京語文学院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-white to-blue-100 min-h-screen">
+    <!-- Sakura Animation Container -->
+    <div id="sakura-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">東京語文学院</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="btn-secondary">
+                        <i class="fas fa-home mr-2"></i>
+                        Trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 pb-12 min-h-screen">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-2xl mx-auto">
+                <!-- Header Section -->
+                <div class="text-center mb-12">
+                    <div class="flex justify-center items-center mb-6">
+                        <div>
+                            <h1 class="text-4xl font-bold text-gray-800 mb-2">東京語文学院</h1>
+                            <p class="text-lg text-gray-600">Nơi ươm mầm tri thức và ước mơ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auth Form Card -->
+                <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
+                    <!-- Form Header -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 px-8 py-8 text-center border-b">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-graduate text-white text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+                            <span id="form-title">Đăng nhập</span>
+                        </h2>
+                        <p class="text-gray-600 text-lg">
+                            <span id="form-subtitle">Chào mừng bạn trở lại với hành trình học tập!</span>
+                        </p>
+                    </div>
+
+                    <!-- Form Content -->
+                    <div class="px-8 py-10">
+
+
+                        <!-- Login Form -->
+                        <form id="login-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="md:col-span-2">
+                                    <label for="login-username" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-user text-blue-500 mr-2"></i>
+                                        Tên đăng nhập hoặc Email
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            type="text"
+                                            id="login-username"
+                                            name="username"
+                                            class="academic-input w-full pl-4 pr-4"
+                                            placeholder="Nhập tên đăng nhập hoặc email của bạn"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label for="login-password" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-lock text-blue-500 mr-2"></i>
+                                        Mật khẩu
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            type="password"
+                                            id="login-password"
+                                            name="password"
+                                            class="academic-input w-full pl-4 pr-12"
+                                            placeholder="Nhập mật khẩu của bạn"
+                                            required
+                                        >
+                                        <button
+                                            type="button"
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors"
+                                            onclick="togglePassword('login-password')"
+                                            title="Hiển thị mật khẩu"
+                                        >
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div id="login-error-message" class="hidden bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                                    <div>
+                                        <h4 class="text-red-800 font-semibold">Đăng nhập thất bại</h4>
+                                        <p class="text-red-700 text-sm mt-1" id="login-error-text">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2">
+                                <label class="flex items-center text-sm text-gray-600">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-500 mr-2">
+                                    Ghi nhớ đăng nhập
+                                </label>
+                                <a href="#" class="text-sm text-blue-500 hover:text-blue-600 font-medium">Quên mật khẩu?</a>
+                            </div>
+
+                            <div class="pt-6">
+                                <button type="submit" class="academic-btn-primary w-full" id="login-btn">
+                                    <i class="fas fa-sign-in-alt mr-2"></i>
+                                    Đăng nhập vào hệ thống
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Register Form -->
+                        <form id="register-form" class="space-y-6 hidden">
+                            <div class="bg-blue-50 rounded-xl p-4 mb-6">
+                                <div class="flex items-center text-blue-700 mb-2">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    <span class="font-semibold">Thông tin đăng ký</span>
+                                </div>
+                                <p class="text-sm text-blue-600">Vui lòng điền đầy đủ thông tin để tạo tài khoản học viên mới</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="register-username" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-user text-blue-500 mr-2"></i>
+                                        Tên đăng nhập <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="register-username"
+                                        name="username"
+                                        class="academic-input w-full"
+                                        placeholder="Tên đăng nhập"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="register-email" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-envelope text-blue-500 mr-2"></i>
+                                        Email <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="register-email"
+                                        name="email"
+                                        class="academic-input w-full"
+                                        placeholder="email@example.com"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="register-fullname" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                    <i class="fas fa-id-card text-blue-500 mr-2"></i>
+                                    Họ và tên đầy đủ <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="register-fullname"
+                                    name="full_name"
+                                    class="academic-input w-full"
+                                    placeholder="Nhập họ và tên đầy đủ của bạn"
+                                    required
+                                >
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="register-phone" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-phone text-blue-500 mr-2"></i>
+                                        Số điện thoại
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="register-phone"
+                                        name="phone"
+                                        class="academic-input w-full"
+                                        placeholder="0912 345 678"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="register-course" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-book-open text-blue-500 mr-2"></i>
+                                        Khóa học quan tâm
+                                    </label>
+                                    <select id="register-course" name="course_id" class="academic-input w-full">
+                                        <option value="">Chọn khóa học</option>
+                                        <!-- Will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="register-password" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-lock text-blue-500 mr-2"></i>
+                                        Mật khẩu <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            type="password"
+                                            id="register-password"
+                                            name="password"
+                                            class="academic-input w-full pr-12"
+                                            placeholder="Mật khẩu (ít nhất 6 ký tự)"
+                                            required
+                                            minlength="6"
+                                        >
+                                        <button
+                                            type="button"
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors"
+                                            onclick="togglePassword('register-password')"
+                                            title="Hiển thị mật khẩu"
+                                        >
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="register-confirm-password" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                        <i class="fas fa-lock text-blue-500 mr-2"></i>
+                                        Xác nhận mật khẩu <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            type="password"
+                                            id="register-confirm-password"
+                                            name="confirm_password"
+                                            class="academic-input w-full pr-12"
+                                            placeholder="Nhập lại mật khẩu"
+                                            required
+                                        >
+                                        <button
+                                            type="button"
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors"
+                                            onclick="togglePassword('register-confirm-password')"
+                                            title="Hiển thị mật khẩu"
+                                        >
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 rounded-xl p-4">
+                                <div class="flex items-start text-yellow-700">
+                                    <i class="fas fa-exclamation-triangle mr-2 mt-1"></i>
+                                    <div class="text-sm">
+                                        <span class="font-semibold">Lưu ý:</span>
+                                        <span class="text-yellow-600">Thông tin đăng ký sẽ được xét duyệt trong vòng 24h. Bạn sẽ nhận được email thông báo kết quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button type="submit" class="academic-btn-primary w-full" id="register-btn">
+                                    <i class="fas fa-user-plus mr-2"></i>
+                                    Đăng ký tài khoản học viên
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Toggle Forms -->
+                        <div class="mt-10 pt-8 border-t border-gray-200 text-center">
+                            <div class="bg-gray-50 rounded-xl p-6">
+                                <p class="text-gray-600 mb-4">
+                                    <span id="toggle-text">Chưa có tài khoản học viên?</span>
+                                </p>
+                                <button
+                                    type="button"
+                                    id="toggle-form"
+                                    class="academic-btn-secondary"
+                                >
+                                    <i class="fas fa-user-plus mr-2"></i>
+                                    <span id="toggle-link">Đăng ký tài khoản mới</span>
+                                </button>
+                                <p class="text-xs text-gray-500 mt-3">
+                                    Bằng việc đăng ký, bạn đồng ý với <a href="#" class="text-blue-500 hover:underline">Điều khoản sử dụng</a> 
+                                    và <a href="#" class="text-blue-500 hover:underline">Chính sách bảo mật</a> của chúng tôi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 flex items-center space-x-4">
+            <div class="loading-spinner"></div>
+            <span class="text-gray-700">Đang xử lý...</span>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth-xhr.js"></script>
+</body>
+</html>

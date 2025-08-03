@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Học Tiếng Nhật - 東京語文学院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 via-white via-orange-50 via-cyan-50 to-blue-100">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">東京語文学院</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-home mr-2"></i>Về trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen">
+        <div class="container mx-auto px-4 py-12">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold mb-4" style="color: #8b5cf6; font-family: 'Noto Sans JP', sans-serif; line-height: 1.3; letter-spacing: 0.02em;">
+                    Khóa Học Tiếng Nhật
+                </h1>
+                <p class="text-xl text-gray-600">Khám phá chi tiết các khóa học và tìm lộ trình phù hợp với bạn!</p>
+            </div>
+
+            <!-- Course Selection -->
+            <div class="max-w-6xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-center mb-8" style="color: #374151; font-family: 'Noto Sans JP', sans-serif; line-height: 1.3;">Chọn Khóa Học Phù Hợp</h2>
+                
+                <div class="grid lg:grid-cols-3 gap-8" id="courses-container">
+                    <!-- Courses will be loaded dynamically from database -->
+                    <div class="text-center col-span-3 py-8">
+                        <div class="loading-spinner"></div>
+                        <p class="text-gray-600 mt-4">Đang tải khóa học...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Details Section -->
+            <div id="course-details-section" class="max-w-6xl mx-auto mb-12 hidden">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden">
+                    <!-- Course Header -->
+                    <div id="course-detail-header" class="p-8 text-white">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                    
+                    <!-- Course Content Tabs -->
+                    <div class="p-8">
+                        <div class="flex flex-wrap border-b border-gray-200 mb-6">
+                            <button class="tab-btn active" data-tab="overview">
+                                <i class="fas fa-info-circle mr-2"></i>Tổng quan
+                            </button>
+                            <button class="tab-btn" data-tab="curriculum">
+                                <i class="fas fa-book mr-2"></i>Chương trình học
+                            </button>
+                            <button class="tab-btn" data-tab="teachers">
+                                <i class="fas fa-chalkboard-teacher mr-2"></i>Giáo viên
+                            </button>
+                            <button class="tab-btn" data-tab="schedule">
+                                <i class="fas fa-calendar-alt mr-2"></i>Lịch học
+                            </button>
+                            <button class="tab-btn" data-tab="reviews">
+                                <i class="fas fa-star mr-2"></i>Đánh giá
+                            </button>
+                        </div>
+                        
+                        <!-- Tab Contents -->
+                        <div id="tab-overview" class="tab-content active">
+                            <div id="course-overview-content">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        
+                        <div id="tab-curriculum" class="tab-content">
+                            <div id="course-curriculum-content">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        
+                        <div id="tab-teachers" class="tab-content">
+                            <div id="course-teachers-content">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        
+                        <div id="tab-schedule" class="tab-content">
+                            <div id="course-schedule-content">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        
+                        <div id="tab-reviews" class="tab-content">
+                            <div id="course-reviews-content">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        
+                        <!-- Enrollment CTA -->
+                        <div class="text-center mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Sẵn sàng bắt đầu học?</h3>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button id="enroll-now-btn" class="enrollment-cta-btn">
+                                    <i class="fas fa-graduation-cap mr-2"></i>
+                                    Đăng ký ngay
+                                </button>
+                                <button id="contact-advisor-btn" class="contact-advisor-btn">
+                                    <i class="fas fa-phone mr-2"></i>
+                                    Tư vấn miễn phí
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Comparison Section -->
+            <div class="max-w-6xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-center mb-8" style="color: #374151; font-family: 'Noto Sans JP', sans-serif;">
+                    <i class="fas fa-balance-scale text-purple-500 mr-3"></i>
+                    So Sánh Khóa Học
+                </h2>
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full" id="course-comparison-table">
+                            <thead class="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                                <tr>
+                                    <th class="p-4 text-left">Tính năng</th>
+                                    <th class="p-4 text-center">Khóa cơ bản (N5)</th>
+                                    <th class="p-4 text-center">Khóa trung cấp (N4-N3)</th>
+                                    <th class="p-4 text-center">Khóa cao cấp (N2-N1)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparison-table-body">
+                                <!-- Dynamic content will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Stories Section -->
+            <div class="max-w-6xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-center mb-8" style="color: #374151; font-family: 'Noto Sans JP', sans-serif;">
+                    <i class="fas fa-trophy text-yellow-500 mr-3"></i>
+                    Câu Chuyện Thành Công
+                </h2>
+                <div class="grid md:grid-cols-3 gap-8" id="testimonials-container">
+                    <!-- Dynamic testimonials will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="text-center mt-12">
+                <div class="bg-white/60 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">
+                        <i class="fas fa-headset text-blue-500 mr-2"></i>
+                        Cần hỗ trợ?
+                    </h3>
+                    <p class="text-gray-600 mb-4">Đội ngũ tư vấn của chúng tôi sẵn sàng hỗ trợ bạn 24/7</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="tel:+84-123-456-789" class="support-btn">
+                            <i class="fas fa-phone mr-2"></i>
+                            Gọi ngay
+                        </a>
+                        <a href="mailto:info@j-study.net" class="support-btn">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Đăng ký thành công!</h3>
+            <p class="text-gray-600 mb-6">Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ tới.</p>
+            <button onclick="closeSuccessModal()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">
+                Đóng
+            </button>
+        </div>
+    </div>
+
+    <script src="js/course-registration.js"></script>
+    <script src="js/course-landing-functions.js"></script>
+</body>
+</html>
