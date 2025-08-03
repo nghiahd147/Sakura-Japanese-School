@@ -1,10 +1,18 @@
 <?php
 // Database configuration
 class Database {
-    private $host = "localhost";
-    private $db_name = "japanese_school";
-    private $username = "root";
-    private $password = "";
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
+
+    public function __construct() {
+        // Railway environment variables
+        $this->host = $_ENV['MYSQLHOST'] ?? 'localhost';
+        $this->db_name = $_ENV['MYSQLDATABASE'] ?? 'japanese_school';
+        $this->username = $_ENV['MYSQLUSER'] ?? 'root';
+        $this->password = $_ENV['MYSQLPASSWORD'] ?? '';
+    }
     public $conn;
 
     public function getConnection() {
